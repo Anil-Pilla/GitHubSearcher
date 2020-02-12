@@ -64,9 +64,14 @@ extension GitHubSearcherViewController: UITableViewDelegate, UITableViewDataSour
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "GitHubSearcherTableCell") as? GitHubSearcherTableCell
         }
-        let user = viewModel.gitHubUsers?[indexPath.row]
-        cell?.textLabel?.text = user?.login
+        if let user = viewModel.gitHubUsers?[indexPath.row] {
+            cell?.populate(withUser: user)
+        }
         
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }

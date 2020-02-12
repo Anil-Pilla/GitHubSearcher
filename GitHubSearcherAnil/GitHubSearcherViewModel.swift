@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 class GitHubSearcherViewModel {
     var gitHubUsers: [GitHubUser]?
+    static let imageCache = NSCache<NSString, UIImage>()
+    
     
     func loadUsers(completion: @escaping (_ success: Bool, _ errorDescription: String?) -> ()) {
         weak var weakSelf = self

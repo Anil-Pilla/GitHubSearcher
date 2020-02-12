@@ -43,13 +43,51 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GitHubSearcherTableCell" id="7y8-ZO-vqh" customClass="GitHubSearcherTableCell" customModule="GitHubSearcherAnil" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GitHubSearcherTableCell" rowHeight="50" id="7y8-ZO-vqh" customClass="GitHubSearcherTableCell" customModule="GitHubSearcherAnil" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7y8-ZO-vqh" id="Bqe-2J-SHK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PAW-aD-h0e">
+                                                    <rect key="frame" x="10" y="5" width="40" height="39.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="bXF-Tq-sCa"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="asz-1p-Hnd">
+                                                    <rect key="frame" x="60" y="-0.5" width="305" height="50.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEV-q6-jrx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="190" height="50.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ao-Ce-xx1">
+                                                            <rect key="frame" x="190" y="0.0" width="115" height="50.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="asz-1p-Hnd" firstAttribute="centerY" secondItem="PAW-aD-h0e" secondAttribute="centerY" id="FSC-2L-d4P"/>
+                                                <constraint firstItem="asz-1p-Hnd" firstAttribute="leading" secondItem="PAW-aD-h0e" secondAttribute="trailing" constant="10" id="NT9-db-QKh"/>
+                                                <constraint firstItem="PAW-aD-h0e" firstAttribute="leading" secondItem="Bqe-2J-SHK" secondAttribute="leading" constant="10" id="do6-vg-Vl5"/>
+                                                <constraint firstItem="PAW-aD-h0e" firstAttribute="top" secondItem="Bqe-2J-SHK" secondAttribute="top" constant="5" id="f74-9h-dwH"/>
+                                                <constraint firstAttribute="trailing" secondItem="asz-1p-Hnd" secondAttribute="trailing" constant="10" id="nPB-vY-1SR"/>
+                                                <constraint firstAttribute="bottom" secondItem="PAW-aD-h0e" secondAttribute="bottom" constant="5" id="oAb-dd-1OG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgAvtar" destination="PAW-aD-h0e" id="Tlh-kX-6Ra"/>
+                                            <outlet property="lblName" destination="CEV-q6-jrx" id="Iim-Kf-jCp"/>
+                                            <outlet property="lblRepos" destination="2ao-Ce-xx1" id="OzK-na-P6e"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
