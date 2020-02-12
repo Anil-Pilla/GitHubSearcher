@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		D95938A523F460BD003E5685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938A423F460BD003E5685 /* AppDelegate.swift */; };
-		D95938A723F460BD003E5685 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938A623F460BD003E5685 /* ViewController.swift */; };
+		D95938A723F460BD003E5685 /* GitHubSearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938A623F460BD003E5685 /* GitHubSearcherViewController.swift */; };
 		D95938AA23F460BD003E5685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D95938A823F460BD003E5685 /* Main.storyboard */; };
 		D95938AC23F460BF003E5685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95938AB23F460BF003E5685 /* Assets.xcassets */; };
 		D95938AF23F460BF003E5685 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D95938AD23F460BF003E5685 /* LaunchScreen.storyboard */; };
 		D95938BA23F460BF003E5685 /* GitHubSearcherAnilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938B923F460BF003E5685 /* GitHubSearcherAnilTests.swift */; };
 		D95938C523F460BF003E5685 /* GitHubSearcherAnilUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938C423F460BF003E5685 /* GitHubSearcherAnilUITests.swift */; };
+		D95938D323F46509003E5685 /* GitHubSearcherTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938D223F46509003E5685 /* GitHubSearcherTableCell.swift */; };
+		D95938D523F466D3003E5685 /* GitHubSearcherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938D423F466D3003E5685 /* GitHubSearcherViewModel.swift */; };
+		D95938D723F467F1003E5685 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938D623F467F1003E5685 /* NetworkManager.swift */; };
+		D95938D923F46CDB003E5685 /* GitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95938D823F46CDB003E5685 /* GitHubUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 /* Begin PBXFileReference section */
 		D95938A123F460BD003E5685 /* GitHubSearcherAnil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearcherAnil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95938A423F460BD003E5685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D95938A623F460BD003E5685 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D95938A623F460BD003E5685 /* GitHubSearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearcherViewController.swift; sourceTree = "<group>"; };
 		D95938A923F460BD003E5685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D95938AB23F460BF003E5685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95938AE23F460BF003E5685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		D95938C023F460BF003E5685 /* GitHubSearcherAnilUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubSearcherAnilUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95938C423F460BF003E5685 /* GitHubSearcherAnilUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearcherAnilUITests.swift; sourceTree = "<group>"; };
 		D95938C623F460BF003E5685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D95938D223F46509003E5685 /* GitHubSearcherTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearcherTableCell.swift; sourceTree = "<group>"; };
+		D95938D423F466D3003E5685 /* GitHubSearcherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearcherViewModel.swift; sourceTree = "<group>"; };
+		D95938D623F467F1003E5685 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D95938D823F46CDB003E5685 /* GitHubUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				D95938A423F460BD003E5685 /* AppDelegate.swift */,
-				D95938A623F460BD003E5685 /* ViewController.swift */,
+				D95938A623F460BD003E5685 /* GitHubSearcherViewController.swift */,
+				D95938D223F46509003E5685 /* GitHubSearcherTableCell.swift */,
+				D95938D423F466D3003E5685 /* GitHubSearcherViewModel.swift */,
+				D95938D823F46CDB003E5685 /* GitHubUser.swift */,
+				D95938D623F467F1003E5685 /* NetworkManager.swift */,
 				D95938A823F460BD003E5685 /* Main.storyboard */,
 				D95938AB23F460BF003E5685 /* Assets.xcassets */,
 				D95938AD23F460BF003E5685 /* LaunchScreen.storyboard */,
@@ -256,7 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D95938A723F460BD003E5685 /* ViewController.swift in Sources */,
+				D95938D523F466D3003E5685 /* GitHubSearcherViewModel.swift in Sources */,
+				D95938D323F46509003E5685 /* GitHubSearcherTableCell.swift in Sources */,
+				D95938D723F467F1003E5685 /* NetworkManager.swift in Sources */,
+				D95938D923F46CDB003E5685 /* GitHubUser.swift in Sources */,
+				D95938A723F460BD003E5685 /* GitHubSearcherViewController.swift in Sources */,
 				D95938A523F460BD003E5685 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
