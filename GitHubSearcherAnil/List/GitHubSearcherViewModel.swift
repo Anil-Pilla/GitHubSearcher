@@ -12,12 +12,21 @@ import UIKit
 class GitHubSearcherViewModel {
     var gitHubUsers: [GitHubUser]?
     static let imageCache = NSCache<NSString, UIImage>()
+    static let repositoryCountCache = NSCache<NSString, NSString>()
     
-    
+    func isLoggedIn() -> Bool {
+        if let _ = UserDefaults.standard.value(forKey: "GitHubUsername") as? String, let _ = UserDefaults.standard.value(forKey: "GitHubPassword") as? String {
+            return true
+        } else {
+            return false
+        }
+    }
     func loadUsers(completion: @escaping (_ success: Bool, _ errorDescription: String?) -> ()) {
         weak var weakSelf = self
-        NetworkManager.shared.GETcallUseCache(api: API.gitHubUsers.rawValue) { (data, error) in
+        NetworkManager().GETcallUseCache(api: API.gitHubUsers.value) { (data, error) in
             if let jsonData = data {
+                //let str = String(bytes: jsonData, encoding: String.Encoding.utf8)
+                //print(str)
                 let jsonDecoder = JSONDecoder()
                 do {
                     let users = try jsonDecoder.decode([GitHubUser].self, from: jsonData)

@@ -17,14 +17,23 @@ class GitHubSearcherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if !viewModel.isLoggedIn() {
+            showLogin()
+        }
         loadData()
         showSearchBar()
     }
     
+    func showLogin() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
     func loadData() {
+        guard AppData.shared.userName != nil && AppData.shared.password != nil else {return}
+        self.lblInfo.text = "Loading users.."
+        self.tblUsers.isHidden = true
         weak var weakSelf = self
-        weakSelf?.lblInfo.text = "Loading users.."
-        weakSelf?.tblUsers.isHidden = true
         viewModel.loadUsers { (isSuccess, errorMessage) in
             DispatchQueue.main.async {
                 guard isSuccess else {
@@ -49,6 +58,9 @@ class GitHubSearcherViewController: UIViewController {
         searchController.searchBar.returnKeyType = UIReturnKeyType.search
         searchController.searchBar.placeholder = "Search for Users"
         navigationItem.searchController = searchController
+    }
+    @IBAction func btnLoginAction(_ sender: Any) {
+        showLogin()
     }
 }
 
@@ -75,5 +87,13 @@ extension GitHubSearcherViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "GitHubUserDetailViewController") as! GitHubUserDetailViewController
+        if let user = viewModel.gitHubUsers?[indexPath.row] {
+            vc.loginName = user.login
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

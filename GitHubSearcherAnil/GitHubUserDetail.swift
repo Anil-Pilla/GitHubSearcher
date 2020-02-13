@@ -1,14 +1,14 @@
 //
-//  GitHubUser.swift
+//  GitHubUserDetail.swift
 //  GitHubSearcherAnil
 //
-//  Created by Nanduri on 12/02/20.
+//  Created by Nanduri on 13/02/20.
 //  Copyright © 2020 An. All rights reserved.
 //
 
 import Foundation
 
-struct GitHubUser: Decodable {
+struct  GitHubUserDetail: Codable {
     let login: String
     let id: Int
     let node_id: String
@@ -28,22 +28,20 @@ struct GitHubUser: Decodable {
     let type: String
     let site_admin: Bool
     
-//    let name: String?
-//    let company: String?
-//    let blog: String?
-//    let location: String?
-//    let email: String?
-//    let hireable: String?
-//    let bio: String?
-//    let public_repos: String?
-//    let public_gists: String?
-//    let followers: String?
-//    let following: String?
-//    let created_at: String?
-//    let updated_at: String?
-    
-    var reposCount: Int? = nil
-    /*
+    let name: String
+    let company: String?
+    let blog: String?
+    let location: String?
+    let email: String
+    let hireable: String?
+    let bio: String?
+    let public_repos: Int
+    let public_gists: Int
+    let followers: Int
+    let following: Int
+    let created_at: String?
+    let updated_at: String?
+
     private enum CodingKeys: String, CodingKey{
         case login
         case id
@@ -77,7 +75,7 @@ struct GitHubUser: Decodable {
         case following
         case created_at
         case updated_at
-
+        
     }
     
     init(from decoder: Decoder) throws{
@@ -108,12 +106,11 @@ struct GitHubUser: Decodable {
         email = (try container.decodeIfPresent(String.self, forKey: .email)) ?? ""
         hireable = (try container.decodeIfPresent(String.self, forKey: .hireable)) ?? ""
         bio = (try container.decodeIfPresent(String.self, forKey: .bio)) ?? ""
-        public_repos = (try container.decodeIfPresent(String.self, forKey: .public_repos)) ?? ""
-        public_gists = (try container.decodeIfPresent(String.self, forKey: .public_gists)) ?? ""
-        followers = (try container.decodeIfPresent(String.self, forKey: .followers)) ?? ""
-        following = (try container.decodeIfPresent(String.self, forKey: .following)) ?? ""
+        public_repos = (try container.decodeIfPresent(Int.self, forKey: .public_repos)) ?? 0
+        public_gists = (try container.decodeIfPresent(Int.self, forKey: .public_gists)) ?? 0
+        followers = (try container.decodeIfPresent(Int.self, forKey: .followers)) ?? 0
+        following = (try container.decodeIfPresent(Int.self, forKey: .following)) ?? 0
         created_at = (try container.decodeIfPresent(String.self, forKey: .created_at)) ?? ""
         updated_at = (try container.decodeIfPresent(String.self, forKey: .updated_at)) ?? ""
     }
-     */
 }

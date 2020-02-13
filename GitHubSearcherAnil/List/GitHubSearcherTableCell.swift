@@ -32,18 +32,22 @@ class GitHubSearcherTableCell: UITableViewCell {
         }
         
         //load repos
-        if gitHubUser.reposCount == nil {
-            NetworkManager.shared.GETcallInsideQueues(api: gitHubUser.repos_url) { (data, error) in
-                print("error", error ?? "No!")
+        
+        if let count = GitHubSearcherViewModel.repositoryCountCache.object(forKey: gitHubUser.login as NSString) {
+            self.lblRepos.text = String(format: "Repo: %@", count)
+        } else {
+            NetworkManager().GETcall(api: gitHubUser.repos_url) { (data, error) in
                 if let jsonData = data {
                     do {
                         if let reposArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [AnyObject] {
-                            print("Count", reposArray.count)
                             DispatchQueue.main.async {
+                                GitHubSearcherViewModel.repositoryCountCache.setObject(String(format: "%d", reposArray.count) as NSString, forKey: gitHubUser.login as NSString)
                                 self.lblRepos.text = String(format: "Repo: %d", reposArray.count)
                             }
                         } else {
-                            print("No array", 0)
+                            DispatchQueue.main.async {
+                                self.lblRepos.text = "Repo: 0"
+                            }
                         }
                     } catch {}
                 }

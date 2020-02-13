@@ -8,12 +8,22 @@
 
 import Foundation
 
-enum API: String {
-    case gitHubUsers = "https://api.github.com/users"
+enum API {
+    case gitHubUsers
+    case gitHubUser(String)
+    
+    var value: String {
+        switch self {
+        case .gitHubUsers:
+            return "https://api.github.com/users"
+        case .gitHubUser(let name):
+            return String(format: "https://api.github.com/users/%@", name)
+        }
+    }
 }
 
 class NetworkManager {
-    static let shared = NetworkManager()
+    //static let shared = NetworkManager()
     var operationQueue: OperationQueue {
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 3
@@ -22,7 +32,7 @@ class NetworkManager {
     
     let dispatchGroup = DispatchGroup()
     
-    private init() {
+    init() {
         
     }
     
@@ -34,20 +44,21 @@ class NetworkManager {
     }
     
     func GETcallUseCache(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
-        var request = URLRequest(url: URL(string: api)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 10.0)
-        request.addValue("Anil-Pilla", forHTTPHeaderField: "my_username")
-        request.addValue("my_password", forHTTPHeaderField: "Anil@cocoa1")
+        var request = URLRequest(url: URL(string: api)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0)
+        
+        request.addValue(AppData.shared.userName!, forHTTPHeaderField: "my_username")
+        request.addValue(AppData.shared.password!, forHTTPHeaderField: "Anil@cocoa1")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             completion(data, error)
         }
         task.resume()
     }
     
-    func GETcallInsideQueues(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
-        operationQueue.addOperation {
-            self.GETcallUseCache(api: api, completion: { (data, error) in
-                completion(data, error)
-            })
-        }
-    }
+//    func GETcallInsideQueues(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+//        operationQueue.addOperation {
+//            self.GETcallUseCache(api: api, completion: { (data, error) in
+//                completion(data, error)
+//            })
+//        }
+//    }
 }
