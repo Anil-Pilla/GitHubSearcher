@@ -14,12 +14,40 @@ enum API: String {
 
 class NetworkManager {
     static let shared = NetworkManager()
-    private init() {}
+    var operationQueue: OperationQueue {
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 3
+        return operationQueue
+    }
     
-    func getCall(completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
-        let task = URLSession.shared.dataTask(with: URL(string: API.gitHubUsers.rawValue)!) { (data, response, error) in
+    let dispatchGroup = DispatchGroup()
+    
+    private init() {
+        
+    }
+    
+    func GETcall(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+        let task = URLSession.shared.dataTask(with: URL(string: api)!) { (data, response, error) in
             completion(data, error)
         }
         task.resume()
+    }
+    
+    func GETcallUseCache(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+        var request = URLRequest(url: URL(string: api)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 10.0)
+        request.addValue("Anil-Pilla", forHTTPHeaderField: "my_username")
+        request.addValue("my_password", forHTTPHeaderField: "Anil@cocoa1")
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            completion(data, error)
+        }
+        task.resume()
+    }
+    
+    func GETcallInsideQueues(api: String, completion: @escaping (_ data: Data?, _ error: Error?) -> ()) {
+        operationQueue.addOperation {
+            self.GETcallUseCache(api: api, completion: { (data, error) in
+                completion(data, error)
+            })
+        }
     }
 }

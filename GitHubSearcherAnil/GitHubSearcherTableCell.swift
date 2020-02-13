@@ -30,5 +30,24 @@ class GitHubSearcherTableCell: UITableViewCell {
                 }
             }
         }
+        
+        //load repos
+        if gitHubUser.reposCount == nil {
+            NetworkManager.shared.GETcallInsideQueues(api: gitHubUser.repos_url) { (data, error) in
+                print("error", error ?? "No!")
+                if let jsonData = data {
+                    do {
+                        if let reposArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [AnyObject] {
+                            print("Count", reposArray.count)
+                            DispatchQueue.main.async {
+                                self.lblRepos.text = String(format: "Repo: %d", reposArray.count)
+                            }
+                        } else {
+                            print("No array", 0)
+                        }
+                    } catch {}
+                }
+            }
+        }
     }
 }

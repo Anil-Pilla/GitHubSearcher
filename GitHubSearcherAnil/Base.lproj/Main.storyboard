@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-li-jUw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-li-jUw">
                                 <rect key="frame" x="187.5" y="365.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -99,7 +99,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V6m-LW-QXx" firstAttribute="leading" secondItem="rEf-Ym-f8M" secondAttribute="leading" id="C7P-VM-4bp"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SVa-li-jUw" secondAttribute="trailing" constant="20" id="HEF-pF-Ojk"/>
                             <constraint firstItem="V6m-LW-QXx" firstAttribute="top" secondItem="rEf-Ym-f8M" secondAttribute="top" id="Ncw-mp-4zS"/>
+                            <constraint firstItem="SVa-li-jUw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kbH-4P-0pr" secondAttribute="leading" constant="20" id="TLh-mI-mYB"/>
                             <constraint firstItem="rEf-Ym-f8M" firstAttribute="bottom" secondItem="V6m-LW-QXx" secondAttribute="bottom" id="bSP-eY-DsL"/>
                             <constraint firstItem="SVa-li-jUw" firstAttribute="centerY" secondItem="rEf-Ym-f8M" secondAttribute="centerY" id="jGl-sI-HML"/>
                             <constraint firstItem="SVa-li-jUw" firstAttribute="centerX" secondItem="rEf-Ym-f8M" secondAttribute="centerX" id="juZ-dP-KI7"/>
@@ -115,7 +117,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usL-c0-IeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1162" y="82"/>
+            <point key="canvasLocation" x="1345" y="27"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7WP-YB-Ipt">
+            <objects>
+                <viewController id="hZk-zq-WHX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b2x-bv-xHN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UmU-zR-mkA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vsG-kB-oRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>

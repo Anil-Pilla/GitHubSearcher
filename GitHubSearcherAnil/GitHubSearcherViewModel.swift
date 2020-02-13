@@ -16,7 +16,7 @@ class GitHubSearcherViewModel {
     
     func loadUsers(completion: @escaping (_ success: Bool, _ errorDescription: String?) -> ()) {
         weak var weakSelf = self
-        NetworkManager.shared.getCall { (data, error) in
+        NetworkManager.shared.GETcallUseCache(api: API.gitHubUsers.rawValue) { (data, error) in
             if let jsonData = data {
                 let jsonDecoder = JSONDecoder()
                 do {
@@ -26,7 +26,6 @@ class GitHubSearcherViewModel {
                 } catch {
                     completion(false, "Unable to read the response")
                 }
-                
             } else if let error = error {
                 completion(false, error.localizedDescription)
             } else {

@@ -23,6 +23,8 @@ class GitHubSearcherViewController: UIViewController {
     
     func loadData() {
         weak var weakSelf = self
+        weakSelf?.lblInfo.text = "Loading users.."
+        weakSelf?.tblUsers.isHidden = true
         viewModel.loadUsers { (isSuccess, errorMessage) in
             DispatchQueue.main.async {
                 guard isSuccess else {
@@ -36,7 +38,7 @@ class GitHubSearcherViewController: UIViewController {
             }
         }
     }
-
+    
     func showSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
