@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class GitHubSearcherViewModel {
-    var gitHubUsers: [GitHubUser]?
+    private var gitHubUsers: [GitHubUser]?
     static let imageCache = NSCache<NSString, UIImage>()
     static let repositoryCountCache = NSCache<NSString, NSString>()
     
@@ -21,9 +21,20 @@ class GitHubSearcherViewModel {
             return false
         }
     }
+    
+    func usersList(searchTerm: String? = nil) -> [GitHubUser]? {
+        if let str = searchTerm, str.count > 0 {
+            let filteredUsers = gitHubUsers?.filter({ (user) -> Bool in
+                return user.login.lowercased().range(of: str.lowercased()) != nil
+            })
+            return filteredUsers
+        }
+        return gitHubUsers
+    }
+    
     func loadUsers(completion: @escaping (_ success: Bool, _ errorDescription: String?) -> ()) {
         weak var weakSelf = self
-        NetworkManager().GETcallUseCache(api: API.gitHubUsers.value) { (data, error) in
+        NetworkManager().GETcall(api: API.gitHubUsers.value) { (data, error) in
             if let jsonData = data {
                 //let str = String(bytes: jsonData, encoding: String.Encoding.utf8)
                 //print(str)

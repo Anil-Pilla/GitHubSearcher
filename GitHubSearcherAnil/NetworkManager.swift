@@ -49,6 +49,9 @@ class NetworkManager {
         request.addValue(AppData.shared.userName!, forHTTPHeaderField: "my_username")
         request.addValue(AppData.shared.password!, forHTTPHeaderField: "Anil@cocoa1")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let data = data, let str = String(bytes: data, encoding: .utf8) {
+                print(str)
+            }
             completion(data, error)
         }
         task.resume()

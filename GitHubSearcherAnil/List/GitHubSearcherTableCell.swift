@@ -36,7 +36,7 @@ class GitHubSearcherTableCell: UITableViewCell {
         if let count = GitHubSearcherViewModel.repositoryCountCache.object(forKey: gitHubUser.login as NSString) {
             self.lblRepos.text = String(format: "Repo: %@", count)
         } else {
-            NetworkManager().GETcall(api: gitHubUser.repos_url) { (data, error) in
+            NetworkManager().GETcallUseCache(api: gitHubUser.repos_url) { (data, error) in
                 if let jsonData = data {
                     do {
                         if let reposArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [AnyObject] {

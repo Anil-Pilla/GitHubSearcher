@@ -13,6 +13,7 @@ class GitHubSearcherViewController: UIViewController {
     @IBOutlet weak var lblInfo: UILabel!
     
     let viewModel = GitHubSearcherViewModel()
+    var searchString: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,12 +66,23 @@ class GitHubSearcherViewController: UIViewController {
 }
 
 extension GitHubSearcherViewController: UISearchBarDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchString = searchText
+        tblUsers.reloadData()
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchString = searchBar.text
+        tblUsers.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchString = nil
+        tblUsers.reloadData()
+    }
 }
 
 extension GitHubSearcherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.gitHubUsers?.count ?? 0
+        return viewModel.usersList(searchTerm: searchString)?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +90,7 @@ extension GitHubSearcherViewController: UITableViewDelegate, UITableViewDataSour
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "GitHubSearcherTableCell") as? GitHubSearcherTableCell
         }
-        if let user = viewModel.gitHubUsers?[indexPath.row] {
+        if let user = viewModel.usersList(searchTerm: searchString)?[indexPath.row] {
             cell?.populate(withUser: user)
         }
         
@@ -91,7 +103,7 @@ extension GitHubSearcherViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "GitHubUserDetailViewController") as! GitHubUserDetailViewController
-        if let user = viewModel.gitHubUsers?[indexPath.row] {
+        if let user = viewModel.usersList(searchTerm: searchString)?[indexPath.row] {
             vc.loginName = user.login
         }
         self.navigationController?.pushViewController(vc, animated: true)

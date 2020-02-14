@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
+
 class LoginViewController: UIViewController {
+    
+    let sreviceName: String = "GitHubSearcherAnil"
+    
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     override func viewDidLoad() {
@@ -31,5 +35,13 @@ class LoginViewController: UIViewController {
         AppData.shared.password = pwd
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func deletePreviousGitHubCredentials() {
+        
+    }
+    
+    func saveGitHubCredentials() {
+        
     }
 }

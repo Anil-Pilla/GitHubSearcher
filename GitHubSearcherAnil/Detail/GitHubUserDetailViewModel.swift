@@ -13,7 +13,7 @@ class GitHubUserDetailViewModel {
     var repos = [[String: Any]]()
     func loadUser(userName: String, completion: @escaping (_ success: Bool, _ errorDescription: String?) -> ()) {
         weak var weakSelf = self
-        NetworkManager().GETcallUseCache(api: API.gitHubUser(userName).value) { (data, error) in
+        NetworkManager().GETcall(api: API.gitHubUser(userName).value) { (data, error) in
             if let jsonData = data {
                 let jsonDecoder = JSONDecoder()
                 do {
