@@ -10,5 +10,8 @@ import Foundation
 import UIKit
 
 class GitHubUserDetailTableCell: UITableViewCell {
+    @IBOutlet weak var lblRepoName: UILabel!
+    @IBOutlet weak var lblForks: UILabel!
+    @IBOutlet weak var lblStars: UILabel!
     
 }

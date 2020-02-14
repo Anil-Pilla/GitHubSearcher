@@ -199,12 +199,15 @@
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for repositories" translatesAutoresizingMaskIntoConstraints="NO" id="FIE-pn-OnW">
                                 <rect key="frame" x="0.0" y="220" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hZk-zq-WHX" id="g9Q-By-NLi"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pcq-Wh-YYS">
                                 <rect key="frame" x="0.0" y="276" width="375" height="391"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="wZ8-PL-VJE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GitHubUserDetailTableCell" rowHeight="50" id="wZ8-PL-VJE" customClass="GitHubUserDetailTableCell" customModule="GitHubSearcherAnil" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wZ8-PL-VJE" id="Yb9-p1-soc">
@@ -212,22 +215,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hir-FH-xbn">
-                                                    <rect key="frame" x="25" y="14.5" width="262.5" height="20.5"/>
+                                                    <rect key="frame" x="25" y="14.5" width="225" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0x7-JG-Rqm">
-                                                    <rect key="frame" x="297.5" y="5" width="57.5" height="41"/>
+                                                    <rect key="frame" x="260" y="5" width="95" height="41"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-In-09Z">
-                                                            <rect key="frame" x="0.0" y="0.0" width="57.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-d3-gfq">
-                                                            <rect key="frame" x="0.0" y="20.5" width="57.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="95" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -237,7 +240,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hir-FH-xbn" firstAttribute="leading" secondItem="Yb9-p1-soc" secondAttribute="leadingMargin" constant="10" id="F7r-mz-urU"/>
-                                                <constraint firstItem="Hir-FH-xbn" firstAttribute="width" secondItem="Yb9-p1-soc" secondAttribute="width" multiplier="0.7" id="LS0-26-Gk4"/>
+                                                <constraint firstItem="Hir-FH-xbn" firstAttribute="width" secondItem="Yb9-p1-soc" secondAttribute="width" multiplier="0.6" id="LS0-26-Gk4"/>
                                                 <constraint firstItem="0x7-JG-Rqm" firstAttribute="top" secondItem="Yb9-p1-soc" secondAttribute="top" constant="5" id="QpC-pE-pD0"/>
                                                 <constraint firstItem="Hir-FH-xbn" firstAttribute="top" secondItem="Yb9-p1-soc" secondAttribute="top" constant="14.5" id="hGK-kc-wgQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="0x7-JG-Rqm" secondAttribute="trailing" constant="20" id="ifz-hy-lf6"/>
@@ -246,8 +249,17 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hir-FH-xbn" secondAttribute="trailing" constant="20" symbolic="YES" id="qtP-kD-88b"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblForks" destination="MKQ-In-09Z" id="7dx-qB-SvA"/>
+                                            <outlet property="lblRepoName" destination="Hir-FH-xbn" id="dtl-eJ-aRu"/>
+                                            <outlet property="lblStars" destination="jHM-d3-gfq" id="Zna-Yb-S6P"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="hZk-zq-WHX" id="9rg-BR-Znr"/>
+                                    <outlet property="delegate" destination="hZk-zq-WHX" id="xiu-4x-rRf"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

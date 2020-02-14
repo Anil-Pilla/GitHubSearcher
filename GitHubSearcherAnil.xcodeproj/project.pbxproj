@@ -124,9 +124,7 @@
 				D9ACD1DC23F70200001F800A /* KeychainPasswordItem.swift */,
 				D9BDBA3723F575A800951A05 /* List */,
 				D9BDBA3823F575B700951A05 /* Detail */,
-				D95938D823F46CDB003E5685 /* GitHubUser.swift */,
 				D9BDBA3F23F5D95800951A05 /* AppData.swift */,
-				D9BDBA3B23F5A69200951A05 /* GitHubUserDetail.swift */,
 				D95938D623F467F1003E5685 /* NetworkManager.swift */,
 				D95938A823F460BD003E5685 /* Main.storyboard */,
 				D95938AB23F460BF003E5685 /* Assets.xcassets */,
@@ -160,6 +158,7 @@
 				D95938A623F460BD003E5685 /* GitHubSearcherViewController.swift */,
 				D95938D423F466D3003E5685 /* GitHubSearcherViewModel.swift */,
 				D95938D223F46509003E5685 /* GitHubSearcherTableCell.swift */,
+				D95938D823F46CDB003E5685 /* GitHubUser.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -170,6 +169,7 @@
 				D9BDBA3323F5707800951A05 /* GitHubUserDetailViewController.swift */,
 				D9BDBA3523F5756C00951A05 /* GitHubUserDetailViewModel.swift */,
 				D9BDBA3923F57C5700951A05 /* GitHubUserDetailTableCell.swift */,
+				D9BDBA3B23F5A69200951A05 /* GitHubUserDetail.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";

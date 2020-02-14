@@ -26,10 +26,18 @@ class GitHubUserDetailViewController: UIViewController {
     
     var loginName: String?
     let viewModel = GitHubUserDetailViewModel()
+    var searchString: String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = loginName ?? nil
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tblRepos.estimatedRowHeight = 100
+        tblRepos.rowHeight = UITableView.automaticDimension
     }
     
     func loadData() {
@@ -57,3 +65,44 @@ class GitHubUserDetailViewController: UIViewController {
         }
     }
 }
+
+extension GitHubUserDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.reposList(searchTerm: searchString).count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "GitHubUserDetailTableCell") as? GitHubUserDetailTableCell
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "GitHubUserDetailTableCell") as? GitHubUserDetailTableCell
+        }
+
+        let repo = viewModel.reposList(searchTerm: searchString)[indexPath.row]
+        cell?.lblRepoName.text = repo["name"] as? String
+        if let forks = repo["forks"] as? Int {
+            cell?.lblForks.text = String(format: "%d Forks", forks)
+        }
+        if let stars = repo["stargazers_count"] as? Int {
+            cell?.lblStars.text = String(format: "%d Stars", stars)
+        }
+        return cell!
+    }
+}
+
+extension GitHubUserDetailViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchString = searchText
+        tblRepos.reloadData()
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchString = searchBar.text
+        tblRepos.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchString = nil
+        tblRepos.reloadData()
+    }
+}
+
+
+
